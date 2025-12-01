@@ -1,0 +1,175 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --bg-color: #1a1a2e;
+    --container-color: #1f2847;
+    --cell-bg: #16213e;
+    --border-color: #0f3460;
+    --text-color: #e3e3e3;
+    --player-x-color: #00FFFF; /* Bright Cyan */
+    --player-o-color: #ff69b4; /* Bright Pink */
+    --win-color: #28a745; /* Green */
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* --- Utility Class --- */
+.hidden {
+    display: none;
+}
+
+/* --- "Play Game" Button Style --- */
+.play-btn {
+    background-color: var(--player-o-color);
+    color: var(--bg-color); /* Dark text for contrast */
+    border: none;
+    padding: 20px 40px;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.play-btn:hover {
+    background-color: #00e0e0;
+    transform: scale(1.05);
+}
+
+
+/* --- Main Game Container --- */
+.game-container {
+    background-color: var(--container-color);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    width: 100%;
+    max-width: 420px;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* --- Scoreboard --- */
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.score-player {
+    background: var(--bg-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 120px;
+}
+
+.score-player span {
+    display: block;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Set X and O colors on scoreboard */
+#playerXScore span {
+    color: var(--player-x-color);
+}
+#playerOScore span {
+    color: var(--player-o-color);
+}
+
+
+/* --- Status Message --- */
+.status {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    min-height: 1.5em; /* Prevents layout shift */
+}
+
+/* --- Game Board & Cells --- */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px; /* This creates the grid lines */
+    margin-bottom: 25px;
+}
+
+.cell {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Makes cells perfect squares */
+    background-color: var(--cell-bg);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem; /* Size of X and O */
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none; /* Prevents text selection */
+}
+
+.cell:not(.playerX):not(.playerO):hover {
+    background-color: #2a3a5e; /* Hover for empty cells */
+}
+
+/* Player-specific cell styles */
+.cell.playerX {
+    color: var(--player-x-color);
+}
+
+.cell.playerO {
+    color: var(--player-o-color);
+}
+
+/* --- Winning Cell Highlight --- */
+/* This is how we "show how players win" */
+.cell.win {
+    background-color: var(--win-color);
+    color: #ffffff; /* White text on win */
+    animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* --- Restart Button --- */
+.restart-btn {
+    background-color: var(--player-o-color);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.restart-btn:hover {
+    background-color: #d8509a;
+    transform: translateY(-2px);
+}
